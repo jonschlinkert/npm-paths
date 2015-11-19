@@ -1,8 +1,8 @@
 # npm-paths [![NPM version](https://badge.fury.io/js/npm-paths.svg)](http://badge.fury.io/js/npm-paths)  [![Build Status](https://travis-ci.org/jonschlinkert/npm-paths.svg)](https://travis-ci.org/jonschlinkert/npm-paths)
 
-> Returns an array of unique "global" directories based on the user's platform and environment. The resulting paths can be used for doing lookups for generators or other globally installed npm packages. Node.js / JavaScript.
+> Returns an array of unique "npm" directories based on the user's platform and environment.
 
-This lib does not include the `require.main.paths` in the result array. If you do need the `require.main.paths`, use [global-paths][] instead.
+This lib does not include the `require.main.paths` in the result array. If you do need the `require.main.paths`, use [global-paths](https://github.com/jonschlinkert/global-paths) instead.
 
 ## Install
 
