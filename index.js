@@ -23,11 +23,15 @@ module.exports = function npmPaths(options) {
   var paths = ['/node_modules'];
   var addPath = union(paths, options);
 
+  var modulePath = typeof options.module === 'string'
+    ? options.module
+    : null;
+
   if (options.fast === true) {
-    addPath(npm(cwd, options.module));
+    addPath(npm(cwd, modulePath));
   } else {
     while (segs.pop()) {
-      var fp = npm(segs.join(path.sep), options.module);
+      var fp = npm(segs.join(path.sep), modulePath);
       if (fp.charAt(0) !== '/' && !isWindows()) {
         fp = '/' + fp;
       }
@@ -40,11 +44,11 @@ module.exports = function npmPaths(options) {
     addPath(nodePaths.filter(Boolean));
   } else {
 
-    addPath(path.join(gm, options.module || ''));
+    addPath(path.join(gm, modulePath || ''));
     if (isWindows()) {
       addPath(path.join(npm(process.env.APPDATA), 'npm'));
     } else {
-      addPath(npm('/usr/lib', options.module));
+      addPath(npm('/usr/lib', modulePath));
     }
   }
 
