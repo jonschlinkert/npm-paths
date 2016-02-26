@@ -41,7 +41,8 @@ module.exports = function npmPaths(options) {
 
   if (process.env.NODE_PATH) {
     var nodePaths = process.env.NODE_PATH.split(path.delimiter);
-    addPath(nodePaths.filter(Boolean));
+    nodePaths.filter(Boolean)
+      .forEach(addPath);
   } else {
 
     addPath(path.join(gm, modulePath || ''));
