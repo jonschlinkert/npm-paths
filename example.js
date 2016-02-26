@@ -1,3 +1,3 @@
 
 var paths = require('./');
-console.log(paths())
+console.log(paths());
