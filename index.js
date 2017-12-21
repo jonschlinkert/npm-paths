@@ -40,11 +40,11 @@ module.exports = function npmPaths(options) {
   }
 
   if (process.env.NODE_PATH) {
-    var nodePaths = process.env.NODE_PATH.split(path.delimiter);
-    nodePaths.filter(Boolean)
+    process.env.NODE_PATH
+      .split(path.delimiter)
+      .filter(Boolean)
       .forEach(addPath);
   } else {
-
     addPath(path.join(gm, modulePath || ''));
     if (isWindows()) {
       addPath(path.join(npm(process.env.APPDATA), 'npm'));
@@ -60,13 +60,12 @@ module.exports = function npmPaths(options) {
 };
 
 function union(paths, options) {
-  return function(path) {
+  return function(filepath) {
     if (typeof options.filter === 'function') {
-      if (!options.filter(path)) return;
+      if (!options.filter(filepath)) return;
     }
-
-    if (paths.indexOf(path) === -1) {
-      paths.push(path);
+    if (paths.indexOf(filepath) === -1) {
+      paths.push(filepath);
     }
   };
 }
