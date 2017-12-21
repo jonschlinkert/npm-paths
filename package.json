@@ -4,6 +4,10 @@
   "version": "0.1.3",
   "homepage": "https://github.com/jonschlinkert/npm-paths",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "contributors": [
+    "Brian Woodward (https://twitter.com/doowb)",
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)"
+  ],
   "repository": "jonschlinkert/npm-paths",
   "bugs": {
     "url": "https://github.com/jonschlinkert/npm-paths/issues"
@@ -21,20 +25,22 @@
   },
   "dependencies": {
     "global-modules": "^1.0.0",
-    "is-windows": "^0.1.1"
+    "is-windows": "^1.0.1"
   },
   "devDependencies": {
-    "gulp-format-md": "^0.1.7",
+    "gulp-format-md": "^1.0.0",
     "helper-example": "^0.1.0",
-    "mocha": "*"
+    "mocha": "^3.5.3"
   },
   "keywords": [
     "directory",
     "dirname",
     "global",
     "module",
+    "npm",
     "package",
     "path",
+    "paths",
     "prefix",
     "resolve"
   ],
@@ -50,12 +56,12 @@
     ],
     "related": {
       "list": [
-        "resolve-up",
-        "look-up",
+        "contains-path",
         "global-modules",
-        "global-prefix",
         "global-paths",
-        "contains-path"
+        "global-prefix",
+        "look-up",
+        "resolve-up"
       ]
     },
     "reflinks": [
