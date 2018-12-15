@@ -1,7 +1,7 @@
 {
   "name": "npm-paths",
   "description": "Returns an array of NPM directory paths based on the user's platform and environment.",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "homepage": "https://github.com/jonschlinkert/npm-paths",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
