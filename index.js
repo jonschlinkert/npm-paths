@@ -1,75 +1,28 @@
 'use strict';
 
-var path = require('path');
-var isWindows = require('is-windows');
-var gm = require('global-modules');
+const path = require('path');
+const Module = require('module');
+const gm = require('global-modules');
 
-/**
- * Returns an array of directories to use as a starting
- * point for lookups.
- *
- * @param  {Object} `options`
- * @option {String} `options.cwd` The path to search from. Defaults to `process.cwd()`.
- * @option {String} `options.module` The name of a module to append to each path in the returned array of paths. The advantage of using this is that you won't have to loop over the paths again.
- * @option {Boolean} `options.fast` Returns the resolved path to `node_modules` relative to the cwd and the `node_modules` relative to the global modules paths used by npm, and **skips all intermediate directories**. Defaults to `undefined`.
- * @return {Array} Array of directories
- */
+module.exports = cwd => {
+  // backwards compatibility
+  if (cwd && typeof cwd === 'object') cwd = cwd.cwd;
 
-module.exports = function npmPaths(options) {
-  options = options || {};
-  var cwd = options.cwd || process.cwd();
+  let isWindows = process.platform === 'win32'
+    || process.env.OSTYPE === 'msys'
+    || process.env.OSTYPE === 'cygwin';
 
-  var segs = cwd.split(path.sep);
-  var paths = ['/node_modules'];
-  var addPath = union(paths, options);
-
-  var modulePath = typeof options.module === 'string'
-    ? options.module
-    : null;
-
-  if (options.fast === true) {
-    addPath(npm(cwd, modulePath));
-  } else {
-    while (segs.pop()) {
-      var fp = npm(segs.join(path.sep), modulePath);
-      if (fp.charAt(0) !== '/' && !isWindows()) {
-        fp = '/' + fp;
-      }
-      addPath(fp);
-    }
-  }
+  let paths = new Set(Module._nodeModulePaths(cwd || process.cwd()));
+  paths.add(gm);
 
   if (process.env.NODE_PATH) {
-    process.env.NODE_PATH
-      .split(path.delimiter)
-      .filter(Boolean)
-      .forEach(addPath);
+    // this really should be avoided, see https://github.com/nodejs/node/issues/9372
+    process.env.NODE_PATH.split(path.delimiter).forEach(dir => paths.add(dir));
+  } else if (isWindows) {
+    paths.add(path.join(process.env.APPDATA, 'npm', 'node_modules'));
   } else {
-    addPath(path.join(gm, modulePath || ''));
-    if (isWindows()) {
-      addPath(path.join(npm(process.env.APPDATA), 'npm'));
-    } else {
-      addPath(npm('/usr/lib', modulePath));
-    }
+    paths.add('/usr/lib/node_modules');
   }
 
-  paths.sort(function(a, b) {
-    return a.split(path.sep).length < b.split(path.sep).length;
-  });
-  return paths;
+  return [...paths];
 };
-
-function union(paths, options) {
-  return function(filepath) {
-    if (typeof options.filter === 'function') {
-      if (!options.filter(filepath)) return;
-    }
-    if (paths.indexOf(filepath) === -1) {
-      paths.push(filepath);
-    }
-  };
-}
-
-function npm(dir, name) {
-  return path.resolve(dir, 'node_modules', name || '');
-}

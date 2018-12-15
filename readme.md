@@ -1,6 +1,6 @@
 # npm-paths [![NPM version](https://img.shields.io/npm/v/npm-paths.svg?style=flat)](https://www.npmjs.com/package/npm-paths) [![NPM monthly downloads](https://img.shields.io/npm/dm/npm-paths.svg?style=flat)](https://npmjs.org/package/npm-paths) [![NPM total downloads](https://img.shields.io/npm/dt/npm-paths.svg?style=flat)](https://npmjs.org/package/npm-paths) [![Linux Build Status](https://img.shields.io/travis/jonschlinkert/npm-paths.svg?style=flat&label=Travis)](https://travis-ci.org/jonschlinkert/npm-paths)
 
-> Returns an array of unique "npm" directories based on the user's platform and environment.
+> Returns an array of NPM directory paths based on the user's platform and environment.
 
 Please consider following this project's author, [Jon Schlinkert](https://github.com/jonschlinkert), and consider starring the project to show your :heart: and support.
 
@@ -17,10 +17,11 @@ This lib does not include the `require.main.paths` in the result array. If you d
 ## Usage
 
 ```js
-
-var paths = require('npm-paths');
+const paths = require('./');
 console.log(paths());
 
+// specify the CWD to start from
+console.log(paths('some/directory'));
 ```
 
 ## Example results
@@ -30,18 +31,20 @@ Results in something like the following:
 **Mac**
 
 ```js
+// example was run from the "/Users/jonschlinkert/dev/npm-paths/" directory
 [ '/Users/jonschlinkert/dev/npm-paths/node_modules',
   '/Users/jonschlinkert/dev/node_modules',
-  '/usr/local/lib/node_modules',
   '/Users/jonschlinkert/node_modules',
-  '/usr/lib/node_modules',
   '/Users/node_modules',
-  '/node_modules' ]
+  '/node_modules',
+  '/usr/local/lib/node_modules',
+  '/usr/lib/node_modules' ]
 ```
 
 **Windows**
 
 ```js
+// example was run from the "F:\\dev\\npm-paths" directory
 [ 'C:\\Users\\SERVER\\AppData\\Roaming\\node_modules\\npm',
   'C:\\Program Files\\nodejs\\node_modules',
   'F:\\dev\\npm-paths\\node_modules',
@@ -68,6 +71,7 @@ $ npm install && npm test
 ```
 
 </details>
+
 <details>
 <summary><strong>Building docs</strong></summary>
 
@@ -85,33 +89,31 @@ $ npm install -g verbose/verb#dev verb-generate-readme && verb
 
 You might also be interested in these projects:
 
-* [contains-path](https://www.npmjs.com/package/contains-path): Return true if a file path contains the given path. | [homepage](https://github.com/jonschlinkert/contains-path "Return true if a file path contains the given path.")
 * [global-modules](https://www.npmjs.com/package/global-modules): The directory used by npm for globally installed npm modules. | [homepage](https://github.com/jonschlinkert/global-modules "The directory used by npm for globally installed npm modules.")
 * [global-paths](https://www.npmjs.com/package/global-paths): Returns an array of unique "global" directories based on the user's platform and environment. The… [more](https://github.com/jonschlinkert/global-paths) | [homepage](https://github.com/jonschlinkert/global-paths "Returns an array of unique "global" directories based on the user's platform and environment. The resulting paths can be used for doing lookups for generators or other globally installed npm packages. Node.js / JavaScript.")
 * [global-prefix](https://www.npmjs.com/package/global-prefix): Get the npm global path prefix. | [homepage](https://github.com/jonschlinkert/global-prefix "Get the npm global path prefix.")
-* [look-up](https://www.npmjs.com/package/look-up): Faster drop-in replacement for find-up and findup-sync. | [homepage](https://github.com/jonschlinkert/look-up "Faster drop-in replacement for find-up and findup-sync.")
-* [resolve-up](https://www.npmjs.com/package/resolve-up): Resolve paths to globally installed npm modules using glob patterns. Useful for getting paths to… [more](https://github.com/jonschlinkert/resolve-up) | [homepage](https://github.com/jonschlinkert/resolve-up "Resolve paths to globally installed npm modules using glob patterns. Useful for getting paths to yeoman or Generate generators, etc.")
 
 ### Contributors
 
-| **Commits** | **Contributor** | 
-| --- | --- |
-| 8 | [jonschlinkert](https://github.com/jonschlinkert) |
-| 1 | [doowb](https://github.com/doowb) |
+| **Commits** | **Contributor** |  
+| --- | --- |  
+| 13 | [jonschlinkert](https://github.com/jonschlinkert) |  
+| 2  | [loremaps](https://github.com/loremaps) |  
+| 1  | [doowb](https://github.com/doowb) |  
 
 ### Author
 
 **Jon Schlinkert**
 
-* [linkedin/in/jonschlinkert](https://linkedin.com/in/jonschlinkert)
-* [github/jonschlinkert](https://github.com/jonschlinkert)
-* [twitter/jonschlinkert](https://twitter.com/jonschlinkert)
+* [GitHub Profile](https://github.com/jonschlinkert)
+* [Twitter Profile](https://twitter.com/jonschlinkert)
+* [LinkedIn Profile](https://linkedin.com/in/jonschlinkert)
 
 ### License
 
-Copyright © 2017, [Jon Schlinkert](https://github.com/jonschlinkert).
+Copyright © 2018, [Jon Schlinkert](https://github.com/jonschlinkert).
 Released under the [MIT License](LICENSE).
 
 ***
 
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.6.0, on December 21, 2017._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.8.0, on December 15, 2018._

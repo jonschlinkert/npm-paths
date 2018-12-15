@@ -1,7 +1,7 @@
 {
   "name": "npm-paths",
-  "description": "Returns an array of unique \"npm\" directories based on the user's platform and environment.",
-  "version": "1.0.0",
+  "description": "Returns an array of NPM directory paths based on the user's platform and environment.",
+  "version": "1.0.1",
   "homepage": "https://github.com/jonschlinkert/npm-paths",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
@@ -18,19 +18,17 @@
   ],
   "main": "index.js",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=6"
   },
   "scripts": {
     "test": "mocha"
   },
   "dependencies": {
-    "global-modules": "^1.0.0",
-    "is-windows": "^1.0.1"
+    "global-modules": "^2.0.0"
   },
   "devDependencies": {
-    "gulp-format-md": "^1.0.0",
-    "helper-example": "^0.1.0",
-    "mocha": "^3.5.3"
+    "gulp-format-md": "^2.0.0",
+    "mocha": "^5.2.0"
   },
   "keywords": [
     "directory",
@@ -56,23 +54,13 @@
     ],
     "related": {
       "list": [
-        "contains-path",
         "global-modules",
         "global-paths",
-        "global-prefix",
-        "look-up",
-        "resolve-up"
+        "global-prefix"
       ]
     },
-    "reflinks": [
-      "global-paths",
-      "verb"
-    ],
     "lint": {
       "reflinks": true
-    },
-    "helpers": [
-      "helper-example"
-    ]
+    }
   }
 }
